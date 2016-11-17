@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cmcc.mobile.admin.dao.UserMapper">
+	<resultMap id="BaseResultMap" type="cmcc.mobile.admin.entity.User">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="v_id" property="vId" jdbcType="VARCHAR" />
+		<result column="mobile" property="mobile" jdbcType="VARCHAR" />
+		<result column="login_name" property="loginName" jdbcType="VARCHAR" />
+		<result column="pass_word" property="passWord" jdbcType="VARCHAR" />
+		<result column="user_name" property="userName" jdbcType="VARCHAR" />
+		<result column="work_number" property="workNumber" jdbcType="VARCHAR" />
+		<result column="head_url" property="headUrl" jdbcType="VARCHAR" />
+		<result column="head_img" property="headImg" jdbcType="VARCHAR" />
+		<result column="post" property="post" jdbcType="VARCHAR" />
+		<result column="org_id" property="orgId" jdbcType="VARCHAR" />
+		<result column="re_name" property="reName" jdbcType="VARCHAR" />
+		<result column="vwt_no" property="vwtNo" jdbcType="VARCHAR" />
+		<result column="creat_time" property="creatTime" jdbcType="VARCHAR" />
+		<result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+		<result column="showindex" property="showindex" jdbcType="INTEGER" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
+		<result column="company_id" property="companyId" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<resultMap type="cmcc.mobile.admin.vo.UserInfoVo" id="UserInfoMap"
+		extends="BaseResultMap">
+		<result column="orgName" property="orgName" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, v_id, mobile, login_name, pass_word, user_name,
+		work_number,
+		head_url, head_img,
+		post, org_id, re_name, vwt_no,
+		creat_time, update_time, showindex, status,
+		company_id
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from user
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from user
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="cmcc.mobile.admin.entity.User">
+		insert into user (id, v_id,
+		mobile,
+		login_name, pass_word, user_name,
+		work_number, head_url,
+		head_img,
+		post, org_id, re_name,
+		vwt_no, creat_time, update_time,
+		showindex, status, company_id
+		)
+		values (#{id,jdbcType=VARCHAR},
+		#{vId,jdbcType=VARCHAR},
+		#{mobile,jdbcType=VARCHAR},
+		#{loginName,jdbcType=VARCHAR}, #{passWord,jdbcType=VARCHAR},
+		#{userName,jdbcType=VARCHAR},
+		#{workNumber,jdbcType=VARCHAR},
+		#{headUrl,jdbcType=VARCHAR},
+		#{headImg,jdbcType=VARCHAR},
+		#{post,jdbcType=VARCHAR}, #{orgId,jdbcType=VARCHAR},
+		#{reName,jdbcType=VARCHAR},
+		#{vwtNo,jdbcType=VARCHAR},
+		#{creatTime,jdbcType=VARCHAR},
+		#{updateTime,jdbcType=VARCHAR},
+		#{showindex,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR},
+		#{companyId,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="cmcc.mobile.admin.entity.User">
+		insert into user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="vId != null">
+				v_id,
+			</if>
+			<if test="mobile != null">
+				mobile,
+			</if>
+			<if test="loginName != null">
+				login_name,
+			</if>
+			<if test="passWord != null">
+				pass_word,
+			</if>
+			<if test="userName != null">
+				user_name,
+			</if>
+			<if test="workNumber != null">
+				work_number,
+			</if>
+			<if test="headUrl != null">
+				head_url,
+			</if>
+			<if test="headImg != null">
+				head_img,
+			</if>
+			<if test="post != null">
+				post,
+			</if>
+			<if test="orgId != null">
+				org_id,
+			</if>
+			<if test="reName != null">
+				re_name,
+			</if>
+			<if test="vwtNo != null">
+				vwt_no,
+			</if>
+			<if test="creatTime != null">
+				creat_time,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+			<if test="showindex != null">
+				showindex,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="companyId != null">
+				company_id,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="vId != null">
+				#{vId,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				#{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="loginName != null">
+				#{loginName,jdbcType=VARCHAR},
+			</if>
+			<if test="passWord != null">
+				MD5(#{passWord,jdbcType=VARCHAR}),
+			</if>
+			<if test="userName != null">
+				#{userName,jdbcType=VARCHAR},
+			</if>
+			<if test="workNumber != null">
+				#{workNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="headUrl != null">
+				#{headUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="headImg != null">
+				#{headImg,jdbcType=VARCHAR},
+			</if>
+			<if test="post != null">
+				#{post,jdbcType=VARCHAR},
+			</if>
+			<if test="orgId != null">
+				#{orgId,jdbcType=VARCHAR},
+			</if>
+			<if test="reName != null">
+				#{reName,jdbcType=VARCHAR},
+			</if>
+			<if test="vwtNo != null">
+				#{vwtNo,jdbcType=VARCHAR},
+			</if>
+			<if test="creatTime != null">
+				#{creatTime,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=VARCHAR},
+			</if>
+			<if test="showindex != null">
+				#{showindex,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=VARCHAR},
+			</if>
+			<if test="companyId != null">
+				#{companyId,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cmcc.mobile.admin.entity.User">
+		update user
+		<set>
+			<if test="vId != null">
+				v_id = #{vId,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				mobile = #{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="loginName != null">
+				login_name = #{loginName,jdbcType=VARCHAR},
+			</if>
+			<if test="passWord != null">
+				pass_word = #{passWord,jdbcType=VARCHAR},
+			</if>
+			<if test="userName != null">
+				user_name = #{userName,jdbcType=VARCHAR},
+			</if>
+			<if test="workNumber != null">
+				work_number = #{workNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="headUrl != null">
+				head_url = #{headUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="headImg != null">
+				head_img = #{headImg,jdbcType=VARCHAR},
+			</if>
+			<if test="post != null">
+				post = #{post,jdbcType=VARCHAR},
+			</if>
+			<if test="orgId != null">
+				org_id = #{orgId,jdbcType=VARCHAR},
+			</if>
+			<if test="reName != null">
+				re_name = #{reName,jdbcType=VARCHAR},
+			</if>
+			<if test="vwtNo != null">
+				vwt_no = #{vwtNo,jdbcType=VARCHAR},
+			</if>
+			<if test="creatTime != null">
+				creat_time = #{creatTime,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=VARCHAR},
+			</if>
+			<if test="showindex != null">
+				showindex = #{showindex,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="companyId != null">
+				company_id = #{companyId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cmcc.mobile.admin.entity.User">
+		update user
+		set
+		v_id = #{vId,jdbcType=VARCHAR},
+		mobile = #{mobile,jdbcType=VARCHAR},
+		login_name = #{loginName,jdbcType=VARCHAR},
+		pass_word =
+		#{passWord,jdbcType=VARCHAR},
+		user_name = #{userName,jdbcType=VARCHAR},
+		work_number = #{workNumber,jdbcType=VARCHAR},
+		head_url =
+		#{headUrl,jdbcType=VARCHAR},
+		head_img = #{headImg,jdbcType=VARCHAR},
+		post = #{post,jdbcType=VARCHAR},
+		org_id = #{orgId,jdbcType=VARCHAR},
+		re_name = #{reName,jdbcType=VARCHAR},
+		vwt_no =
+		#{vwtNo,jdbcType=VARCHAR},
+		creat_time = #{creatTime,jdbcType=VARCHAR},
+		update_time = #{updateTime,jdbcType=VARCHAR},
+		showindex =
+		#{showindex,jdbcType=INTEGER},
+		status = #{status,jdbcType=VARCHAR},
+		company_id = #{companyId,jdbcType=VARCHAR}
+		where id =
+		#{id,jdbcType=VARCHAR}
+	</update>
+
+	<select id="getByMobile" resultMap="BaseResultMap"
+		parameterType="cmcc.mobile.admin.entity.User">
+		select
+		<include refid="Base_Column_List" />
+		from user where mobile = #{mobile,jdbcType=VARCHAR} and
+		company_id=#{companyId} and status != '9' limit 1
+	</select>
+
+	<select id="selectUserInfoByOrgId" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from user
+		where id = #{id,jdbcType=VARCHAR} and status !='9'
+	</select>
+
+
+	<select id="selectUserInfoByOrg" resultMap="BaseResultMap"
+		parameterType="map">
+		select
+		<include refid="Base_Column_List" />
+		from user
+		where id = #{id,jdbcType=VARCHAR} and status !='9'
+		<if test="companyId !=null">
+			and company_id = #{companyId} ;
+		</if>
+	</select>
+
+	<select id="selectAllByOrgId" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from user
+		where org_id = #{orgId,jdbcType=VARCHAR} and (status
+		&lt;&gt;9 or status IS NULL)
+		order by showindex
+	</select>
+	<select id="selectAllByOrg" resultMap="BaseResultMap"
+		parameterType="map">
+		select
+		<include refid="Base_Column_List" />
+		from user
+		where
+		<if test="deptId !=null">
+			org_id = #{deptId,jdbcType=VARCHAR} and
+		</if>(status
+		&lt;&gt;9 or status IS NULL)
+		<if test=" companyId !=null">
+			and company_id = #{companyId,jdbcType=VARCHAR}
+		</if>
+		order by showindex
+	</select>
+
+
+	<select id="getUserByOrgId" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select * from user where org_id = #{id,jdbcType=VARCHAR} and
+		status != '9'
+	</select>
+
+
+	<select id="getUserById" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select * from user where id = #{id,jdbcType=VARCHAR} and
+		status != '9'
+	</select>
+
+
+	<select id="selectByMobile" parameterType="java.util.HashMap"
+		resultMap="BaseResultMap">
+		select *
+		from user
+		where mobile = #{mobile,jdbcType=VARCHAR}
+		and company_id =
+		#{companyId,jdbcType=VARCHAR}
+		and status != 9 limit 1
+	</select>
+
+
+	<select id="getInfoByWorkNumber" parameterType="java.util.HashMap"
+		resultMap="BaseResultMap">
+		select *
+		from user
+		where work_number =
+		#{workNumber,jdbcType=VARCHAR} and status !=
+		'9' and company_id =
+		#{companyId,jdbcType=VARCHAR} limit 1
+	</select>
+
+	<update id="updateUserByCompanyId" parameterType="java.lang.String">
+		update user set
+		status = '9' where company_id =
+		#{companyId,jdbcType=VARCHAR}
+	</update>
+	<!-- 查询一个公司的一个集合内存在的手机号 -->
+	<select id="getExistMobiles" parameterType="java.util.Map"
+		resultType="java.lang.String">
+		select mobile from user where status != '9' and company_id
+		=#{companyId} and mobile in
+		<foreach collection="mobiles" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+
+	<update id="batchUpdate" parameterType="java.util.Map">
+		<foreach collection="users" item="item" index="index" open=""
+			close="" separator=";">
+			update user
+			<set>
+				<if test="item.userName != null">
+					user_name=#{item.userName},
+				</if>
+				<if test="item.workNumber != null">
+					work_number=#{item.workNumber},
+				</if>
+				<if test="item.showindex != null">
+					showindex=#{item.showindex},
+				</if>
+				<if test="item.updateTime != null">
+					update_time=#{item.updateTime},
+				</if>
+				<if test="item.post != null">
+					post=#{item.post},
+				</if>
+				<if test="item.orgId != null">
+					org_id=#{item.orgId},
+				</if>
+			</set>
+			where mobile=#{item.mobile} and company_id=#{companyId}
+		</foreach>
+	</update>
+
+	<insert id="insertBatch" parameterType="java.util.List">
+		insert into user (id, v_id, mobile, login_name, pass_word, user_name,
+		work_number,
+		head_url, head_img,
+		post, org_id, re_name, vwt_no,
+		creat_time, update_time, showindex, status,
+		company_id)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.id}, #{item.vId}, #{item.mobile},
+			#{item.loginName},
+			#{item.passWord},
+			#{item.userName},
+			#{item.workNumber},
+			#{item.headUrl},
+			#{item.headImg},
+			#{item.post},
+			#{item.orgId},
+			#{item.reName}, #{item.vwtNo}, #{item.creatTime},
+			#{item.updateTime},
+			#{item.showindex},#{item.status},#{item.companyId})
+		</foreach>
+	</insert>
+	<!-- 同步更新人员信息 -->
+	<update id="updateByPrimaryKeySelectives" parameterType="cmcc.mobile.admin.entity.User">
+		update user
+		<set>
+			<if test="vId != null">
+				v_id = #{vId,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				mobile = #{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="loginName != null">
+				login_name = #{loginName,jdbcType=VARCHAR},
+			</if>
+			<if test="passWord != null">
+				pass_word = #{passWord,jdbcType=VARCHAR},
+			</if>
+			<if test="userName != null">
+				user_name = #{userName,jdbcType=VARCHAR},
+			</if>
+			<if test="workNumber != null">
+				work_number = #{workNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="headUrl != null">
+				head_url = #{headUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="headImg != null">
+				head_img = #{headImg,jdbcType=VARCHAR},
+			</if>
+			<if test="post != null">
+				post = #{post,jdbcType=VARCHAR},
+			</if>
+			<if test="orgId != null">
+				org_id = #{orgId,jdbcType=VARCHAR},
+			</if>
+			<if test="reName != null">
+				re_name = #{reName,jdbcType=VARCHAR},
+			</if>
+			<if test="vwtNo != null">
+				vwt_no = #{vwtNo,jdbcType=VARCHAR},
+			</if>
+			<if test="creatTime != null">
+				creat_time = #{creatTime,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=VARCHAR},
+			</if>
+			<if test="showindex != null">
+				showindex = #{showindex,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="companyId != null">
+				company_id = #{companyId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where v_id = #{vId,jdbcType=VARCHAR}
+	</update>
+	<!-- 查询用户信息（旧导出用） -->
+	<select id="findById" parameterType="java.lang.String"
+		resultMap="UserInfoMap">
+		select u.*,o.org_name as orgName from user u left join
+		organization o on u.org_id=o.id where u.id=#{id} limit 1
+	</select>
+	<!-- 查询一个公司的所有用户信息 -->
+	<select id="findByCompanyId" parameterType="java.util.Map"
+		resultMap="UserInfoMap">
+		select u.*,o.org_name as orgName from user u left join
+		organization o
+		on u.org_id=o.id where u.company_id=#{companyId} and u.id in
+		<foreach collection="list" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+	<!-- 查询已经授权的人员 -->
+	<select id="selectUser" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select * from user where id in
+		<foreach collection="userId" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+</mapper>

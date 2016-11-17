@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cmcc.mobile.admin.dao.ActivitiTableConfigMapper" >
+  <resultMap id="BaseResultMap" type="cmcc.mobile.admin.entity.ActivitiTableConfig" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="date" property="date" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="forms" property="forms" jdbcType="VARCHAR" />
+    <result column="flow" property="flow" jdbcType="VARCHAR" />
+    <result column="approval_type_id" property="approvalTypeId" jdbcType="VARCHAR" />
+    <result column="last_user_id" property="lastUserId" jdbcType="VARCHAR" />
+    <result column="last_deal_way" property="lastDealWay" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, date, status, forms, flow, approval_type_id, last_user_id, last_deal_way, user_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from activiti_table_config
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from activiti_table_config
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cmcc.mobile.admin.entity.ActivitiTableConfig" >
+    insert into activiti_table_config (id, date, status, 
+      forms, flow, approval_type_id, 
+      last_user_id, last_deal_way, user_id
+      )
+    values (#{id,jdbcType=VARCHAR}, #{date,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{forms,jdbcType=VARCHAR}, #{flow,jdbcType=VARCHAR}, #{approvalTypeId,jdbcType=VARCHAR}, 
+      #{lastUserId,jdbcType=VARCHAR}, #{lastDealWay,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cmcc.mobile.admin.entity.ActivitiTableConfig" >
+    insert into activiti_table_config
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="forms != null" >
+        forms,
+      </if>
+      <if test="flow != null" >
+        flow,
+      </if>
+      <if test="approvalTypeId != null" >
+        approval_type_id,
+      </if>
+      <if test="lastUserId != null" >
+        last_user_id,
+      </if>
+      <if test="lastDealWay != null" >
+        last_deal_way,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="forms != null" >
+        #{forms,jdbcType=VARCHAR},
+      </if>
+      <if test="flow != null" >
+        #{flow,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalTypeId != null" >
+        #{approvalTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUserId != null" >
+        #{lastUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="lastDealWay != null" >
+        #{lastDealWay,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cmcc.mobile.admin.entity.ActivitiTableConfig" >
+    update activiti_table_config
+    <set >
+      <if test="date != null" >
+        date = #{date,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="forms != null" >
+        forms = #{forms,jdbcType=VARCHAR},
+      </if>
+      <if test="flow != null" >
+        flow = #{flow,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalTypeId != null" >
+        approval_type_id = #{approvalTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUserId != null" >
+        last_user_id = #{lastUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="lastDealWay != null" >
+        last_deal_way = #{lastDealWay,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cmcc.mobile.admin.entity.ActivitiTableConfig" >
+    update activiti_table_config
+    set date = #{date,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      forms = #{forms,jdbcType=VARCHAR},
+      flow = #{flow,jdbcType=VARCHAR},
+      approval_type_id = #{approvalTypeId,jdbcType=VARCHAR},
+      last_user_id = #{lastUserId,jdbcType=VARCHAR},
+      last_deal_way = #{lastDealWay,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

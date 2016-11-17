@@ -1,0 +1,32 @@
+.menu-spadmin {
+    padding-top: 40px;
+    font-size: 15px;
+    .panel-heading {
+        padding: 10px 15px 10px 45px;
+    }
+    a.list-group-item {
+        position: relative;
+        color: @color-darkgrey;
+        padding: 10px 15px 10px 66px;
+        border: none;
+        background-repeat: no-repeat;
+        background-position: 45px center;
+        &:hover {
+            background-color: @color-whitegrey;
+        }
+        &.active {
+            color: @color-blue;
+            background-color: @color-whitegrey;
+            border: none;
+            &::before {
+                content: " ";
+                width: 4px;
+                height: 40px;
+                background-color: @color-blue;
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+        }
+    }
+}

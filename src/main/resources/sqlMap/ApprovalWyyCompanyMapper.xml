@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cmcc.mobile.admin.dao.ApprovalWyyCompanyMapper">
+  <resultMap id="BaseResultMap" type="cmcc.mobile.admin.entity.ApprovalWyyCompany">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="wyy_id" jdbcType="VARCHAR" property="wyyId" />
+    <result column="company_id" jdbcType="VARCHAR" property="companyId" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="create_time" jdbcType="VARCHAR" property="createTime" />
+    <result column="create_uid" jdbcType="VARCHAR" property="createUid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, wyy_id, company_id, status, create_time, create_uid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from approval_wyy_company
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from approval_wyy_company
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cmcc.mobile.admin.entity.ApprovalWyyCompany">
+    insert into approval_wyy_company (id, wyy_id, company_id, 
+      status, create_time, create_uid
+      )
+    values (#{id,jdbcType=BIGINT}, #{wyyId,jdbcType=VARCHAR}, #{companyId,jdbcType=VARCHAR}, 
+      #{status,jdbcType=CHAR}, #{createTime,jdbcType=VARCHAR}, #{createUid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cmcc.mobile.admin.entity.ApprovalWyyCompany">
+    insert into approval_wyy_company
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="wyyId != null">
+        wyy_id,
+      </if>
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createUid != null">
+        create_uid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="wyyId != null">
+        #{wyyId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createUid != null">
+        #{createUid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cmcc.mobile.admin.entity.ApprovalWyyCompany">
+    update approval_wyy_company
+    <set>
+      <if test="wyyId != null">
+        wyy_id = #{wyyId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        company_id = #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createUid != null">
+        create_uid = #{createUid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cmcc.mobile.admin.entity.ApprovalWyyCompany">
+    update approval_wyy_company
+    set wyy_id = #{wyyId,jdbcType=VARCHAR},
+      company_id = #{companyId,jdbcType=VARCHAR},
+      status = #{status,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      create_uid = #{createUid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+    <select id="selectByCompanyId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+  	*
+    from approval_wyy_company
+    where company_id = #{companyId,jdbcType=BIGINT}
+  </select>
+</mapper>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cmcc.mobile.admin.dao.VwtDeptMapper" >
+	<resultMap id="BaseResultMap" type="cmcc.mobile.admin.entity.VwtDept" >
+	    <id column="deptid" property="deptid" jdbcType="VARCHAR" />
+	    <result column="partname" property="partname" jdbcType="VARCHAR" />
+	    <result column="sort" property="sort" jdbcType="INTEGER" />
+	    <result column="parentdeptnum" property="parentdeptnum" jdbcType="VARCHAR" />
+	    <result column="act_time" property="actTime" jdbcType="TIMESTAMP" />
+	    <result column="customerid" property="customerid" jdbcType="VARCHAR" />
+	  </resultMap>
+	  
+	  <select id="getInfoById" parameterType="java.lang.String" resultMap="BaseResultMap">
+	  		select * from vwt_dept where corpid = #{corpId,jdbcType=VARCHAR}	
+	  </select>
+	  
+	  
+	  
+	  <select id="getDeptByParam" parameterType="java.util.Map" resultMap="BaseResultMap">
+	  	    select * from vwt_dept 
+	  	    where corpid = #{corpId,jdbcType=VARCHAR} 
+	  	    and  act_time>=to_date(#{actTime}, 'YYYY-MM-DD hh24:mi:ss')
+	  	    order by sort
+	  </select>
+	  	  
+	   <!-- 查询部门中时间最大的记录 -->
+	   <select id="selectBycorpId" parameterType="java.lang.String" resultMap="BaseResultMap">
+	  		SELECT A.* FROM vwt_dept A,(SELECT max(act_time) max_day FROM vwt_dept ) B WHERE A.act_time = B.max_day 
+	  </select>
+</mapper>

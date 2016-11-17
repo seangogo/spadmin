@@ -1,0 +1,147 @@
+
+.operat-box() {
+    display: table-cell;
+    padding-right: 1em;
+    width: 3em;
+    vertical-align: middle;
+}
+.operat-link() {
+    display: inline-block;
+    width: 2em;
+}
+
+.table-spadmin {
+    border-color: @color-greywhite;
+    margin-bottom: 0;
+    thead {
+        background-color: @color-greywhite;
+    }
+    & > thead > tr > th,
+    & > tbody > tr > td {
+        font-size: 13px;
+        border: 1px solid @color-greywhite;
+        height: 54px;
+        padding: 12px;
+        vertical-align: middle;
+    }
+    & > tbody > tr:nth-child(odd) {
+        background-color: @color-white;
+    }
+    & > tbody > tr:hover {
+        background-color: @color-lightcyan;
+    }
+    .col-checkbox {
+        width: 40px;
+        text-align: center;
+    }
+    .col-index {
+        width: 4em;
+        text-align: center;
+    }
+    .col-form {
+        width: 12em;
+    }
+    .col-datetime {
+        width: 12em;
+    }
+    .col-actions,
+    .col-more {
+        & > div {
+            .operat-box;
+        }
+        a {
+            .operat-link;
+        }
+        a.act-grey {
+            color: @color-darkgrey;
+            &:hover {
+                color: @color-blackgrey;
+            }
+            &:active {
+                color: @color-blackgrey;
+            }
+        }
+        a.act-green {
+            color: @color-green;
+            &:hover {
+                color: @color-darkgreen;
+            }
+            &:active {
+                color: @color-darkgreen;
+            }
+        }
+        a.act-red {
+            color: @color-red;
+            &:hover {
+                color: @color-darkred;
+            }
+            &:active {
+                color: @color-darkred;
+            }
+        }
+        a.act-orange {
+            color: @color-orange;
+            &:hover {
+                color: @color-darkorange;
+            }
+            &:active {
+                color: @color-darkorange;
+            }
+        }
+    }
+    .col-status {
+        width: 100px;
+        .status-tip {
+            text-align: center;
+            margin-bottom: 1px;
+            &:last-child {
+                margin-bottom: 0;
+            }
+            & > span {
+                display: inline-block;
+                padding: 0 5px;
+                border-radius: 3px;
+            }
+        }
+    }
+    .checkbox {
+        background-color: @color-greywhite;
+        border: 1px solid @color-darkgrey;
+        border-radius:2px;
+        width: 13px;
+        height: 13px;
+        &.checked {
+            background-color: @color-blue;
+            background-image: url(./img/checked.png);
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+        input[type=checkbox] {
+            display: none;
+        }
+    }
+}
+
+#table-approval {
+    .col-actions {
+        width: 270px;
+    }
+    .col-more {
+        width: 110px;
+    }
+}
+#table-employee {
+    .col-actions {
+        width: 150px;
+    }
+}
+#table-flowforms {
+    .col-actions {
+        width: 150px;
+    }
+}
+#table-task {
+    .col-actions {
+        width: 210px;
+    }
+}

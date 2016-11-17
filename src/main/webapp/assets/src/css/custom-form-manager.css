@@ -1,0 +1,30 @@
+@charset "utf-8";
+#version-note {
+  height: 90px;
+  overflow-y: auto;
+}
+.modal-batch-approval .modal-dialog {
+  width: 800px;
+}
+.modal-batch-approval .modal-body {
+  padding: 0;
+  height: 400px;
+}
+.modal-batch-approval .panel-sidebar-body {
+  height: 420px;
+  overflow: auto;
+}
+.modal-batch-approval .batch-main {
+  padding-top: 100px;
+  width: 400px;
+  text-align: center;
+}
+.modal-batch-approval .batch-main .batch-info {
+  margin: 10px 0;
+}
+.modal-batch-approval .item-start-approver {
+  cursor: default;
+}
+.modal-batch-approval .item-start-approver span.item-approver-avatar {
+  background-color: #ddd;
+}

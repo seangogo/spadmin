@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cmcc.mobile.admin.dao.VwtCorpHisMapper" >
+	<resultMap id="BaseResultMap" type="cmcc.mobile.admin.entity.VwtCorpHis" >
+	    <id column="corpid" property="corpid" jdbcType="VARCHAR" />
+	    <result column="corpname" property="corpname" jdbcType="VARCHAR" />
+	    <result column="corppersonname" property="corppersonname" jdbcType="VARCHAR" />
+	    <result column="corpmobilephone" property="corpmobilephone" jdbcType="VARCHAR" />
+	    <result column="customerid" property="customerid" jdbcType="VARCHAR" />
+	    <result column="delete_time" property="deleteTime" jdbcType="VARCHAR" />
+	  </resultMap>
+	  
+	  <select id="getDeleteByParams" parameterType="java.util.Map" resultMap="BaseResultMap">
+	  		select * from vwt_corp_his 
+	  		where corpid = #{corpId,jdbcType=VARCHAR}
+	  		and delete_time >= to_date(#{date,jdbcType=VARCHAR},'yyyy-mm-dd hh24:mi:ss')
+	  </select>
+</mapper>

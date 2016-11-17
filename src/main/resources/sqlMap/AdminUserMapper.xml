@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cmcc.mobile.admin.dao.AdminUserMapper">
+	<resultMap id="BaseResultMap" type="cmcc.mobile.admin.entity.AdminUser">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="mobile" property="mobile" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, name, username, password, mobile, create_time,
+		update_time, status
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from admin_user
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		admin_user
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="cmcc.mobile.admin.entity.AdminUser">
+		insert into admin_user (id,
+		name, username,
+		password, mobile, create_time,
+		update_time, status)
+		values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+		#{username,jdbcType=VARCHAR},
+		#{password,jdbcType=VARCHAR},
+		#{mobile,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+		#{updateTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="cmcc.mobile.admin.entity.AdminUser">
+		insert into admin_user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="username != null">
+				username,
+			</if>
+			<if test="password != null">
+				password,
+			</if>
+			<if test="mobile != null">
+				mobile,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				#{username,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				#{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cmcc.mobile.admin.entity.AdminUser">
+		update admin_user
+		<set>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				username = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				password = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				mobile = #{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cmcc.mobile.admin.entity.AdminUser">
+		update admin_user
+		set name = #{name,jdbcType=VARCHAR},
+		username =
+		#{username,jdbcType=VARCHAR},
+		password = #{password,jdbcType=VARCHAR},
+		mobile = #{mobile,jdbcType=VARCHAR},
+		create_time =
+		#{createTime,jdbcType=TIMESTAMP},
+		update_time =
+		#{updateTime,jdbcType=TIMESTAMP},
+		status = #{status,jdbcType=INTEGER}
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+
+	<select id="checkPass" parameterType="cmcc.mobile.admin.entity.AdminUser"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from admin_user
+		where mobile=#{mobile} and password=md5(#{password}) and status=1 limit 1
+	</select>
+	
+	<update id="updatePwdByPrimaryKey" parameterType="java.util.Map">
+		update admin_user
+		set
+		password = #{password,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	
+	<select id="selectPwdByMobile" resultType="java.lang.String"
+		parameterType="java.lang.String">
+		select password
+		from admin_user
+		where mobile = #{mobile,jdbcType=VARCHAR}
+	</select>
+		<select id="selectPwd" resultType="java.lang.Integer" parameterType="cmcc.mobile.admin.entity.AdminUser">
+		select count(1) from admin_user where mobile = #{mobile,jdbcType=VARCHAR} and password=md5(#{password}) 
+	</select>
+	
+	<select id="selectByCompanyUser" resultMap="BaseResultMap" parameterType="map">
+		select a.* from admin_user a left join
+		admin_role b on a.id = b.admin_user_id
+		where b.company_id = #{companyId,jdbcType=VARCHAR} 
+		and b.admin_user_id != #{userId,jdbcType=VARCHAR}
+	</select>
+</mapper>

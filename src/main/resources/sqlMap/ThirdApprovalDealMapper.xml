@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cmcc.mobile.admin.dao.ThirdApprovalDealMapper">
+	<resultMap id="BaseResultMap" type="cmcc.mobile.admin.entity.ThirdApprovalDeal">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="approval_name" property="approvalName"
+			jdbcType="VARCHAR" />
+		<result column="arrive_date" property="arriveDate" jdbcType="VARCHAR" />
+		<result column="des" property="des" jdbcType="VARCHAR" />
+		<result column="examine_date" property="examineDate" jdbcType="VARCHAR" />
+		<result column="link" property="link" jdbcType="VARCHAR" />
+		<result column="next_node_id" property="nextNodeId" jdbcType="VARCHAR" />
+		<result column="wyy_id" property="wyyId" jdbcType="VARCHAR" />
+		<result column="remark2" property="remark2" jdbcType="VARCHAR" />
+		<result column="remark3" property="remark3" jdbcType="VARCHAR" />
+		<result column="remark4" property="remark4" jdbcType="VARCHAR" />
+		<result column="remark5" property="remark5" jdbcType="VARCHAR" />
+		<result column="run_id" property="runId" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
+		<result column="approval_table_config_id" property="approvalTableConfigId"
+			jdbcType="VARCHAR" />
+		<result column="third_company_id" property="thirdCompanyId"
+			jdbcType="VARCHAR" />
+		<result column="user_id" property="userId" jdbcType="VARCHAR" />
+		<result column="node_status" property="nodeStatus" jdbcType="VARCHAR" />
+		<result column="user_start_id" property="userStartId" jdbcType="VARCHAR" />
+		<result column="company_id" property="companyId" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, approval_name, arrive_date, des, examine_date, link,
+		next_node_id,
+		wyy_id, remark2,
+		remark3, remark4, remark5, run_id,
+		status, approval_table_config_id,
+		third_company_id,
+		user_id,
+		node_status, user_start_id, company_id
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from third_approval_deal
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		third_approval_deal
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="cmcc.mobile.admin.entity.ThirdApprovalDeal">
+		insert into
+		third_approval_deal (id, approval_name, arrive_date,
+		des, examine_date,
+		link,
+		next_node_id, wyy_id, remark2,
+		remark3, remark4, remark5,
+		run_id,
+		status, approval_table_config_id,
+		third_company_id, user_id,
+		node_status,
+		user_start_id, company_id)
+		values (#{id,jdbcType=VARCHAR},
+		#{approvalName,jdbcType=VARCHAR},
+		#{arriveDate,jdbcType=VARCHAR},
+		#{des,jdbcType=VARCHAR}, #{examineDate,jdbcType=VARCHAR},
+		#{link,jdbcType=VARCHAR},
+		#{nextNodeId,jdbcType=VARCHAR},
+		#{wyyId,jdbcType=VARCHAR},
+		#{remark2,jdbcType=VARCHAR},
+		#{remark3,jdbcType=VARCHAR}, #{remark4,jdbcType=VARCHAR},
+		#{remark5,jdbcType=VARCHAR},
+		#{runId,jdbcType=VARCHAR},
+		#{status,jdbcType=VARCHAR},
+		#{approvalTableConfigId,jdbcType=VARCHAR},
+		#{thirdCompanyId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR},
+		#{nodeStatus,jdbcType=VARCHAR},
+		#{userStartId,jdbcType=VARCHAR},
+		#{companyId,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="cmcc.mobile.admin.entity.ThirdApprovalDeal">
+		insert into third_approval_deal
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="approvalName != null">
+				approval_name,
+			</if>
+			<if test="arriveDate != null">
+				arrive_date,
+			</if>
+			<if test="des != null">
+				des,
+			</if>
+			<if test="examineDate != null">
+				examine_date,
+			</if>
+			<if test="link != null">
+				link,
+			</if>
+			<if test="nextNodeId != null">
+				next_node_id,
+			</if>
+			<if test="wyyId != null">
+				wyy_id,
+			</if>
+			<if test="remark2 != null">
+				remark2,
+			</if>
+			<if test="remark3 != null">
+				remark3,
+			</if>
+			<if test="remark4 != null">
+				remark4,
+			</if>
+			<if test="remark5 != null">
+				remark5,
+			</if>
+			<if test="runId != null">
+				run_id,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="approvalTableConfigId != null">
+				approval_table_config_id,
+			</if>
+			<if test="thirdCompanyId != null">
+				third_company_id,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="nodeStatus != null">
+				node_status,
+			</if>
+			<if test="userStartId != null">
+				user_start_id,
+			</if>
+			<if test="companyId != null">
+				company_id,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="approvalName != null">
+				#{approvalName,jdbcType=VARCHAR},
+			</if>
+			<if test="arriveDate != null">
+				#{arriveDate,jdbcType=VARCHAR},
+			</if>
+			<if test="des != null">
+				#{des,jdbcType=VARCHAR},
+			</if>
+			<if test="examineDate != null">
+				#{examineDate,jdbcType=VARCHAR},
+			</if>
+			<if test="link != null">
+				#{link,jdbcType=VARCHAR},
+			</if>
+			<if test="nextNodeId != null">
+				#{nextNodeId,jdbcType=VARCHAR},
+			</if>
+			<if test="wyyId != null">
+				#{wyyId,jdbcType=VARCHAR},
+			</if>
+			<if test="remark2 != null">
+				#{remark2,jdbcType=VARCHAR},
+			</if>
+			<if test="remark3 != null">
+				#{remark3,jdbcType=VARCHAR},
+			</if>
+			<if test="remark4 != null">
+				#{remark4,jdbcType=VARCHAR},
+			</if>
+			<if test="remark5 != null">
+				#{remark5,jdbcType=VARCHAR},
+			</if>
+			<if test="runId != null">
+				#{runId,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=VARCHAR},
+			</if>
+			<if test="approvalTableConfigId != null">
+				#{approvalTableConfigId,jdbcType=VARCHAR},
+			</if>
+			<if test="thirdCompanyId != null">
+				#{thirdCompanyId,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="nodeStatus != null">
+				#{nodeStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="userStartId != null">
+				#{userStartId,jdbcType=VARCHAR},
+			</if>
+			<if test="companyId != null">
+				#{companyId,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cmcc.mobile.admin.entity.ThirdApprovalDeal">
+		update third_approval_deal
+		<set>
+			<if test="approvalName != null">
+				approval_name = #{approvalName,jdbcType=VARCHAR},
+			</if>
+			<if test="arriveDate != null">
+				arrive_date = #{arriveDate,jdbcType=VARCHAR},
+			</if>
+			<if test="des != null">
+				des = #{des,jdbcType=VARCHAR},
+			</if>
+			<if test="examineDate != null">
+				examine_date = #{examineDate,jdbcType=VARCHAR},
+			</if>
+			<if test="link != null">
+				link = #{link,jdbcType=VARCHAR},
+			</if>
+			<if test="nextNodeId != null">
+				next_node_id = #{nextNodeId,jdbcType=VARCHAR},
+			</if>
+			<if test="wyy_id != null">
+				wyy_id = #{wyyId,jdbcType=VARCHAR},
+			</if>
+			<if test="remark2 != null">
+				remark2 = #{remark2,jdbcType=VARCHAR},
+			</if>
+			<if test="remark3 != null">
+				remark3 = #{remark3,jdbcType=VARCHAR},
+			</if>
+			<if test="remark4 != null">
+				remark4 = #{remark4,jdbcType=VARCHAR},
+			</if>
+			<if test="remark5 != null">
+				remark5 = #{remark5,jdbcType=VARCHAR},
+			</if>
+			<if test="runId != null">
+				run_id = #{runId,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="approvalTableConfigId != null">
+				approval_table_config_id =
+				#{approvalTableConfigId,jdbcType=VARCHAR},
+			</if>
+			<if test="thirdCompanyId != null">
+				third_company_id = #{thirdCompanyId,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="nodeStatus != null">
+				node_status = #{nodeStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="userStartId != null">
+				user_start_id = #{userStartId,jdbcType=VARCHAR},
+			</if>
+			<if test="companyId != null">
+				company_id = #{companyId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cmcc.mobile.admin.entity.ThirdApprovalDeal">
+		update
+		third_approval_deal
+		set approval_name =
+		#{approvalName,jdbcType=VARCHAR},
+		arrive_date =
+		#{arriveDate,jdbcType=VARCHAR},
+		des = #{des,jdbcType=VARCHAR},
+		examine_date = #{examineDate,jdbcType=VARCHAR},
+		link =
+		#{link,jdbcType=VARCHAR},
+		next_node_id =
+		#{nextNodeId,jdbcType=VARCHAR},
+		wyy_id = #{wyyId,jdbcType=VARCHAR},
+		remark2 = #{remark2,jdbcType=VARCHAR},
+		remark3 =
+		#{remark3,jdbcType=VARCHAR},
+		remark4 = #{remark4,jdbcType=VARCHAR},
+		remark5 = #{remark5,jdbcType=VARCHAR},
+		run_id =
+		#{runId,jdbcType=VARCHAR},
+		status = #{status,jdbcType=VARCHAR},
+		approval_table_config_id = #{approvalTableConfigId,jdbcType=VARCHAR},
+		third_company_id = #{thirdCompanyId,jdbcType=VARCHAR},
+		user_id =
+		#{userId,jdbcType=VARCHAR},
+		node_status =
+		#{nodeStatus,jdbcType=VARCHAR},
+		user_start_id =
+		#{userStartId,jdbcType=VARCHAR},
+		company_id =
+		#{companyId,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+
+	<!-- 批量删除 -->
+	<delete id="deleteById">
+		delete from third_approval_deal where id in
+		<foreach collection="list" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<select id="getDealByConfig" parameterType="java.util.HashMap"
+		resultMap="BaseResultMap">
+		select * from third_approval_deal
+		where
+		approval_table_config_id = #{confId,jdbcType=VARCHAR}
+		and company_id =
+		#{companyId,jdbcType=VARCHAR}
+		and run_id is null
+	</select>
+
+	<insert id="batchinsert" parameterType="java.util.List">
+		insert into
+		third_approval_deal
+		(id,approval_name,arrive_date,link,status,approval_table_config_id,user_id,node_status,user_start_id,company_id,wyy_id)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.id},#{item.approvalName},#{item.arriveDate},#{item.link},#{item.status},#{item.approvalTableConfigId},#{item.userId},#{item.nodeStatus},#{item.userStartId},#{item.companyId},#{item.wyyId})
+		</foreach>
+	</insert>
+
+	<!-- 通过任务id删除发起的数据 -->
+	<delete id="deleteByTaskId" parameterType="java.lang.Long">
+		delete d from
+		third_approval_deal d,temporary_batch_start tem where
+		tem.third_id=d.id and d.node_status=1 and tem.task_id=#{taskId}
+	</delete>
+	
+	<!-- 通过任务id删除发起的数据 -->
+	<delete id="revokeByMobiles" parameterType="java.util.Map">
+		delete d from
+		third_approval_deal d,temporary_batch_start tem where
+		tem.third_id=d.id and d.node_status=1 and tem.task_id=#{taskId} and mobile in
+		<foreach collection="list" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+</mapper>

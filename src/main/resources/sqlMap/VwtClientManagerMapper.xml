@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cmcc.mobile.admin.dao.VwtClientManagerMapper" >
+  <resultMap id="BaseResultMap" type="cmcc.mobile.admin.entity.VwtClientManager" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="telnum" property="telnum" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, telnum
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from vwt_client_manager
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from vwt_client_manager
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cmcc.mobile.admin.entity.VwtClientManager" >
+    insert into vwt_client_manager (id, name, telnum
+      )
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{telnum,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cmcc.mobile.admin.entity.VwtClientManager" >
+    insert into vwt_client_manager
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="telnum != null" >
+        telnum,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="telnum != null" >
+        #{telnum,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cmcc.mobile.admin.entity.VwtClientManager" >
+    update vwt_client_manager
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="telnum != null" >
+        telnum = #{telnum,jdbcType=VARCHAR},
+      </if>
+       <if test="id != null" >
+        id = #{id,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where name = #{name,jdbcType=VARCHAR} 
+    <if test='telnum !=null '>
+    and telnum = #{telnum ,jdbcType=VARCHAR}
+    </if>
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cmcc.mobile.admin.entity.VwtClientManager" >
+    update vwt_client_manager
+    set name = #{name,jdbcType=VARCHAR},
+    telnum = #{telnum,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

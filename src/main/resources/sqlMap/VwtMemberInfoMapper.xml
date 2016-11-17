@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cmcc.mobile.admin.dao.VwtMemberInfoMapper">
+	<resultMap id="BaseResultMap" type="cmcc.mobile.admin.entity.VwtMemberInfo" >
+	    <id column="memid" property="memid" jdbcType="VARCHAR" />
+	    <result column="corpid" property="corpid" jdbcType="VARCHAR" />
+	    <result column="membername" property="membername" jdbcType="VARCHAR" />
+	    <result column="telnum" property="telnum" jdbcType="VARCHAR" />
+	    <result column="spell" property="spell" jdbcType="VARCHAR" />
+	    <result column="deptid" property="deptid" jdbcType="VARCHAR" />
+	    <result column="jobnum" property="jobnum" jdbcType="VARCHAR" />
+	    <result column="sort" property="sort" jdbcType="INTEGER" />
+	    <result column="roleauth" property="roleauth" jdbcType="INTEGER" />
+	    <result column="visitauth" property="visitauth" jdbcType="INTEGER" />
+	    <result column="creattime" property="creattime" jdbcType="TIMESTAMP" />
+	    <result column="operation_time" property="operationTime" jdbcType="TIMESTAMP" />
+	    <result column="memstatus" property="memstatus" jdbcType="CHAR" />
+	  </resultMap>
+	  
+	  <select id="getUserInfoByCorpId" parameterType="java.lang.String" resultMap="BaseResultMap">
+	  	 select * from vwt_member_info where corpid = #{corpId,jdbcType=VARCHAR}
+	  </select>
+	  
+	  <!-- 新增人和修改人员信息信息 -->
+	  <select id="getUserInfoByParams" parameterType="java.util.Map" resultMap="BaseResultMap">
+	  	 select * from vwt_member_info 
+	  	 where corpid = #{corpId,jdbcType=VARCHAR}
+	  	 <if test ="createtime != null and createtime!= ''">
+	  	 	and creattime >= to_date(#{createtime,jdbcType=VARCHAR},'yyyy-mm-dd hh24:mi:ss')
+	  	 </if>
+	  	 <if test ="operationTime != null and operationTime != ''">
+	  		and operation_time >= to_date(#{operationTime,jdbcType=VARCHAR},'yyyy-mm-dd hh24:mi:ss')
+	  	 </if>
+	  </select>
+	  
+	  <!-- 查询人员最大时间 -->
+	    	   <select id="selectBycorpId" parameterType="java.lang.String" resultMap="BaseResultMap">
+	  		SELECT A.* FROM vwt_member_info A,(SELECT max(creattime) max_day FROM vwt_member_info ) B WHERE A.creattime = B.max_day 
+	  </select>
+	  
+	  	  <!-- 查询人员最大时间 -->
+	    	   <select id="selectBycorp" parameterType="java.lang.String" resultMap="BaseResultMap">
+	  		SELECT A.* FROM vwt_member_info A,(SELECT max(OPERATION_TIME) max_day FROM vwt_member_info ) B WHERE A.OPERATION_TIME = B.max_day 
+	  </select>
+</mapper>

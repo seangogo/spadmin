@@ -1,0 +1,49 @@
+﻿<!doctype html>
+<html lang="zh-cmn-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="author" content="hy">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>车牌识别客户端下载（安卓版）</title>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+    body {
+        font-family: "微软雅黑";
+        width: 100%;
+        margin: 0 auto;
+        font-size: 16px;
+        padding: 1rem;
+    }
+    img {
+        max-width: 100%;
+    }
+    h2 {
+        text-align: center;
+    }
+    p {
+        text-indent: 2rem;
+    }
+    p.bold {
+        font-weight: bold;
+        color: #333;
+    }
+    #centervideo {
+    width:280px;
+    height:220px;
+    margin:auto;//关键是这个
+		}
+</style>
+</head>
+<body>
+    <h2>车牌识别客户端下载（安卓版）</h2>
+
+    	<div id="centervideo">
+   			<a href="cpsb.apk" download="w3logo">下载</a>
+			</div>
+    
+</body>
+</html>

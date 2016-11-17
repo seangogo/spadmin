@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<portable-config>
+	<!-- <config-file path="WEB-INF/classes/redis.properties"> -->
+	<!-- <replace key="redis.ip">192.168.2.18</replace> -->
+	<!-- <replace key="redis.port">6379</replace> -->
+	<!-- </config-file> -->
+	<config-file path="WEB-INF/classes/app.properties">
+		<replace key="FILE_UPLOAD_PATH">/opt/tomcat</replace>
+		<replace key="PERSON_INFO_FILE_PATH">/opt/tomcat</replace>
+		<replace key="TOKEN_URL">http://192.168.2.18:8080</replace>
+		<replace key="SERVER_URL">http://192.168.2.18:8080/</replace>
+	</config-file>
+
+	<config-file path="WEB-INF/classes/server.properties">
+		<replace key="server">192.168.2.18:8080/mobile</replace>
+	</config-file>
+</portable-config>

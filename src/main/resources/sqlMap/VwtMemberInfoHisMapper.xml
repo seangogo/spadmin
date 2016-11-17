@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cmcc.mobile.admin.dao.VwtMemberInfoHisMapper">
+	<resultMap id="BaseResultMap" type="cmcc.mobile.admin.entity.VwtMemberInfoHis" >
+	    <id column="memid" property="memid" jdbcType="VARCHAR" />
+	    <result column="corpid" property="corpid" jdbcType="VARCHAR" />
+	    <result column="membername" property="membername" jdbcType="VARCHAR" />
+	    <result column="telnum" property="telnum" jdbcType="VARCHAR" />
+	    <result column="spell" property="spell" jdbcType="VARCHAR" />
+	    <result column="deptid" property="deptid" jdbcType="VARCHAR" />
+	    <result column="jobnum" property="jobnum" jdbcType="VARCHAR" />
+	    <result column="sort" property="sort" jdbcType="INTEGER" />
+	    <result column="roleauth" property="roleauth" jdbcType="INTEGER" />
+	    <result column="visitauth" property="visitauth" jdbcType="INTEGER" />
+	    <result column="creattime" property="creattime" jdbcType="TIMESTAMP" />
+	    <result column="delete_time" property="deleteTime" jdbcType="TIMESTAMP" />
+	    <result column="memstatus" property="memstatus" jdbcType="CHAR" />
+	  </resultMap>
+	  
+	  <!-- 获取删除数据 -->
+	  <select id="getDeleteByParams" parameterType="java.util.Map" resultMap="BaseResultMap">
+	  		select * from vwt_member_info_his
+	  		where corpid = #{corpId,jdbcType=VARCHAR}
+	  		and delete_time >= to_date(#{date,jdbcType=VARCHAR},'yyyy-mm-dd hh24:mi:ss')
+	  </select>
+	  
+	  <!-- 查询删除记录最大时间 -->
+	  	   <select id="selectBycorpId" parameterType="java.lang.String" resultMap="BaseResultMap">
+	  		SELECT A.* FROM vwt_member_info_his A,(SELECT max(delete_time) max_day FROM vwt_member_info_his) B WHERE A.delete_time = B.max_day 
+	  </select>
+	  </mapper>

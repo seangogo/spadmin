@@ -1,0 +1,758 @@
+body, html {
+    display: block;
+    height: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: 'Helvetica Neue', Helvetica, 'Hiragino Sans GB', STHeitiSC-Light, 'Microsoft YaHei', 微软雅黑, Arial, sans-serif;
+}
+body {
+    /* background: #717171 url(img/custom-form-bg.jpg) no-repeat; */
+    background-color: #333333;
+    background-attachment: fixed;
+    background-position: top left;
+    background-size: cover;
+}
+body.version1 {
+    background-color: #333333;
+}
+body.version2 {
+    background-color: #00092b;
+}
+
+.design-button {
+    margin: 0 5px;
+    border: none;
+    border-radius: 2px;
+    padding: 4px 23px;
+    color: #fff;
+    font-size: 12px;
+    outline: none;
+    cursor: pointer;
+    line-height: normal;
+}
+.design-button.design-button-blue {
+  background: #3f9af9;
+}
+.design-button.design-button-blue:hover {
+  background: #2786e8;
+}
+.design-button.design-button-cyan {
+  background: #5db4cf;
+}
+.design-button.design-button-cyan:hover {
+  background: #429dba;
+}
+.design-button.design-button-green {
+  background: #41b543;
+}
+.design-button.design-button-green:hover {
+  background: #39a03b;
+}
+.design-button.design-button-white {
+  color: #fff;
+  background: #aaa;
+}
+.design-button.design-button-white:hover {
+  color: #fff;
+  background: #f90;
+}
+
+.design-wrap {
+    height: 100%;
+}
+.design-wrap a,
+.design-wrap a:hover {
+    text-decoration: none;
+    cursor: pointer;
+}
+.design-header {
+    height: 40px;
+    width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+.design-header .head-title {
+    position: absolute;
+    left: 0;
+    top: 12px;
+    color: #f3f3f3;
+    font-size: 18px;
+    line-height: 37px;
+    text-align: center;
+}
+.design-header .head-title a,
+.design-header .head-title a:hover {
+    color: #f3f3f3;
+}
+.design-header-logo {
+    width: 30px;
+    height: 30px;
+}
+.design-header-note {
+    left: 100%;
+    top: 50%;
+    margin-top: -12px;
+    padding-left: 10px;
+    line-height: 26px;
+    height: 26px;
+    border-left: 1px solid #ccc;
+    color: #f3f3f3;
+    max-width: 500px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.design-header .head-title-font {
+  font-size: 25px;
+  color: #fff;
+  padding: 0px 10px;
+}
+.design-header .navbar-single-logo {
+  position: relative;
+  top: 5px;
+}
+.design-header .head-actions {
+    position: absolute;
+    right: 0;
+    top: 12px;
+    line-height: 37px;
+    height: 37px;
+    padding: 0 5px;
+    text-align: center;
+    /* background: rgba(0,0,0,0.3); */
+}
+.design-header .head-actions.disabled > .design-button {
+    background: #aaa !important;
+	pointer-events: none;
+}
+
+.design-main {
+    position: fixed;
+    top: 40px;
+    left: 50%;
+    width: 1280px;
+    margin-left: -640px;
+    bottom: 0;
+}
+.design-panel {
+    position: absolute;
+}
+.design-panel-tab {
+    height: 32px;
+}
+.design-panel-tab .tabitem {
+    display: inline-block;
+    width: 99px;
+    height: 28px;
+    line-height: 28px;
+    font-size: 15px;
+    text-align: center;
+    border-radius: 2px;
+    color: #fff;
+}
+.design-panel-tab .tabitem.current {
+    position: relative;
+    color: #fff;
+    background: rgba(255,255,255,0.25);
+}
+.design-panel-tab .tabitem.current:after {
+    content: '';
+    display: block;
+    overflow: hidden;
+    position: absolute;
+    height: 0;
+    width: 0;
+    border: 4px solid transparent;
+    border-top-color: rgba(255,255,255,0.25);
+    bottom: -8px;
+    margin-left: -4px;
+    left: 50%;
+}
+.design-panel-body {
+    overflow: hidden;
+}
+
+.design-widgetspanel {
+    width: 350px;
+    bottom: 0;
+    left: 0;
+    top: 84px;
+}
+.design-widgetspanel .design-panel-body {
+    margin: 30px -15px 0 0;
+}
+.design-widgetitem {
+    border: 1px dashed rgba(255,255,255,0.6);
+    background: rgba(208,208,208,0.15);
+    margin: 0 15px 5px 0;
+    width: 148px;
+    height: 42px;
+    display: inline-block;
+    font-size: 12px;
+    line-height: 42px;
+    text-align: left;
+    padding-left: 15px;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+.design-widgetitem .widgeticon {
+    position: absolute;
+    right: 10px;
+    top: 9px;
+}
+.widgeticon {
+    background: url(img/custom-form-widgets.png) no-repeat;
+    height: 24px;
+    width: 24px;
+    display: inline-block;
+}
+.widgeticon.textfield {
+    background-position: 0 -24px;
+}
+.widgeticon.textareafield {
+    background-position: 0 0;
+}
+.widgeticon.ddselectfield {
+    background-position: 0 -48px;
+}
+.widgeticon.dddatefield {
+    background-position: 0 -72px;
+}
+.widgeticon.dddaterangefield {
+    background-position: 0 -96px;
+}
+.widgeticon.numberfield {
+    background-position: 0 -120px;
+}
+.widgeticon.ddphotofield {
+    background-position: 0 -144px;
+}
+.widgeticon.tablefield {
+    background-position: 0 -168px;
+}
+.widgeticon.ddattachment {
+    background-position: 0 -192px;
+}
+.widgeticon.textnote {
+    background-position: 0 -216px;
+}
+.widgeticon.moneyfield {
+    background-position: 0 -240px;
+}
+.widgeticon.ddmultiselectfield {
+    background-position: 0 -264px;
+}
+
+.design-settingpanel {
+    width: 320px;
+    right: 0;
+    top: 84px;
+    bottom: 0;
+}
+
+.design-formcanvas {
+    position: absolute;
+    left: 0;
+    top: 30px;
+    height: 580px;
+    width: 880px;
+    background: #eee;
+}
+.design-formcanvas label {
+    margin-bottom: 0;
+}
+.design-formcanvas-inner {
+    position: absolute;
+    overflow-x: hidden;
+    overflow-y: auto;
+    left: 20px;
+    top: 20px;
+    right: 20px;
+    bottom: 20px;
+    background: #fff;
+}
+.design-formcanvas-body {
+    overflow: hidden;
+    padding-bottom: 30px;
+    min-height: 100%;
+}
+.design-formcanvas-body.empty {
+    min-height: 300px;
+}
+.design-component {
+    overflow: hidden;
+    position: relative;
+    float: left;
+    width: 100%;
+    border-style: solid;
+    border-width: 1px;
+    border-color: transparent;
+}
+.design-remove {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 12px;
+    color: #eee;
+    display: block;
+    visibility: hidden;
+    cursor: pointer;
+    z-index: 10;
+    background: #ff5400;
+    padding: 3px 2px 2px 3px;
+    width: 22px;
+    height: 28px;
+}
+.design-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 9;
+    border: 1px dashed transparent;
+}
+.design-remove:hover {
+    color: #fff;
+}
+.design-component:hover > .design-remove {
+    visibility: visible;
+}
+.design-component:hover {
+    border-style: dashed;
+    border-color: #ff5400;
+}
+.design-component.active {
+    border-style: solid;
+    border-color: #ff5400;
+}
+
+.design-componentview {
+    position: relative;
+}
+.design-componentview .design-componentview-label {
+    font-size: 14px;
+    color: #858e99;
+    display: block;
+    padding: 10px 15px;
+    white-space: normal;
+    word-break: break-word;
+}
+.design-componentview > .design-componentview-border {
+    background: #fff;
+    padding: 15px 15px 15px 110px;
+    white-space: nowrap;
+    min-height: 61px;
+}
+.design-componentview > .design-componentview-border > .design-componentview-label {
+    display: block;
+    padding: 5px;
+    color: #222;
+    position: absolute;
+    left: 0;
+}
+.design-componentview .design-componentview-placeholder {
+    color: #ccc;
+    font-size: 15px;
+    vertical-align: middle;
+    padding: 4px;
+    border: 1px solid #ccc;
+    display: block;
+    width: 100%;
+}
+.design-componentview .design-componentview-adddetail {
+    color: #f7f9ff;
+    text-align: center;
+    padding: 5px;
+    background: #008cee;
+    vertical-align: middle;
+    width: 120px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 5px 15px;
+}
+.design-componentview .design-componentview-adddetail:before {
+    font-family: "iconfont";
+    font-size: 16px;
+    font-style: normal;
+    content: "\e608";
+    display: inline-block;
+    margin: 0 3px 0 0;
+}
+.design-componentview .design-componentview-content {
+  padding: 15px;
+  color: #858e99;
+}
+.design-componentview .design-componentview-area {
+    background: #ddeff3;
+    /* position: relative; */
+}
+.design-componentview .design-componentview-area .emptytip {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  white-space: nowrap;
+  color: #ccc;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.design-componentgroup {
+  margin: 0;
+  padding: 0;
+  border-width: 1px 0;
+  border-style: solid;
+  border-color: #c8c8ca transparent;
+  min-height: 90px;
+}
+.design-componentgroup >.design-component {
+  padding: 0;
+  margin: 0;
+  background: #fff;
+}
+.design-componentgroup >.design-component .design-componentview-border {
+    border-width: 0 0 1px;
+}
+.design-componentgroup >.design-component:last-child .design-componentview-border:last-child {
+  border-width: 0;
+}
+.empty .design-componentgroup {
+  border-width: 0;
+}
+.design-componentview-stats {
+  padding: 3px 10px;
+}
+.design-componentview-stats .design-componentview-statitem {
+  color: #858e99;
+  font-size: 14px;
+  text-align: left;
+  line-height: 20px;
+  margin: 2px 0;
+}
+.design-component-textareafield .design-componentview-placeholder {
+    height: 50px;
+    display: inline-block;
+}
+.design-component-rteditor .design-componentview-placeholder {
+    background-image: url(img/rteditor-bg.png);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    padding-top: 65px;
+    height: 200px;
+    display: inline-block;
+}
+.design-component-ddselectfield .icon-enter,
+.design-component-ddmultiselectfield .icon-enter,
+.design-component-dddatefield .icon-enter,
+.design-component-dddaterangefield .icon-enter,
+.design-component-linkageselectfield .icon-enter {
+    font-size: 15px;
+    color: #e0e0e0;
+    position: absolute;
+    top: 16px;
+    right: 15px;
+}
+
+.design-component-ddphotofield .design-componentview-placeholder,
+.design-component-ddattachment .design-componentview-placeholder,
+.design-component-userselect .design-componentview-placeholder,
+.design-component-documentview .design-componentview-placeholder {
+    display: none;
+}
+
+.design-component-dddaterangefield .design-componentview-border,
+.design-component-linkageselectfield .design-componentview-border {
+    position: relative;
+    width: 50%;
+    float: left;
+}
+.design-component-dddaterangefield .design-componentview-border:not(:first-child),
+.design-component-linkageselectfield .design-componentview-border:not(:first-child) {
+    border-top: none;
+}
+.design-component-ddphotofield .icon-camera {
+    font-size: 15px;
+    color: #858e99;
+    position: absolute;
+    top: 16px;
+    right: 15px;
+}
+.design-component-ddattachment .icon-chakanfujian {
+    font-size: 15px;
+    color: #858e99;
+    position: absolute;
+    top: 16px;
+    right: 15px;
+}
+.design-component-userselect .icon-add {
+    font-size: 15px;
+    color: #858e99;
+    position: absolute;
+    top: 16px;
+    right: 15px;
+}
+.design-component-textnote {
+    padding: 0;
+    margin: 0;
+}
+.design-component-textnote p {
+    word-break: break-all;
+    margin: 0;
+}
+.design-component-moneyfield .cnformat {
+  color: #858e99;
+  font-size: 14px;
+  padding: 5px 15px;
+}
+.design-iconselect {
+  overflow: hidden;
+}
+.design-iconselect .iconitem {
+  width: 50px;
+  height: 50px;
+  display: block;
+  float: left;
+  margin: 5px;
+  border-radius: 15px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  overflow: hidden;
+  position: relative;
+}
+.design-iconselect .iconitem.selected {
+  border-color: #3f9af9;
+}
+.design-iconselect .iconitem img {
+  max-width: 100%;
+  max-height: 100%;
+  padding: 10px;
+  background: rgba(255,255,255,0.9);
+  border-radius: 15px;
+}
+.design-iconselect .iconitem .icon {
+  position: absolute;
+  display: none;
+  border-radius: 50%;
+  bottom: 1px;
+  right: 1px;
+  color: #fff;
+  padding: 3px 2px 2px 3px;
+  font-size: 14px;
+  background: #3f9af9;
+}
+.design-iconselect .iconitem.selected .icon {
+  display: block;
+}
+
+.design-settingpanel {
+  width: 350px;
+  right: 0;
+  top: 84px;
+  bottom: 0;
+}
+.design-settingpanel input[type="text"],
+.design-settingpanel textarea,
+.design-settingpanel select {
+  background: rgba(208,208,208,0.15);
+  border: 1px solid rgba(1,1,1,0.3);
+  color: #fff;
+  padding: 6px 10px;
+  width: 310px;
+  border-radius: 2px;
+  outline: none;
+  font-size: 12px;
+}
+.design-settingpanel select > option {
+    color: #000;
+}
+.design-settingpanel .error-note {
+    color: #f33;
+}
+.design-settingpanel input[type="text"]:focus,
+.design-settingpanel textarea:focus {
+  border-color: #3f9af9;
+  background: transparent;
+}
+.design-settingpanel input[type="text"].has-error,
+.design-settingpanel textarea.has-error {
+    border-color: #f33;
+}
+.design-settingpanel ::-webkit-input-placeholder {
+  color: #666;
+}
+.design-settingpanel .design-form {
+  position: absolute;
+  top: 40px;
+  bottom: 0;
+  overflow-y: auto;
+  left: 0;
+  right: 0;
+  padding: 19px 0;
+}
+.design-settingpanel .design-field .fieldname {
+    color: #fff;
+}
+.design-settingpanel .design-field .fieldinfo {
+    color: #ddd;
+}
+.design-settingpanel .design-field .design-conditionwarn {
+  font-size: 12px;
+  color: #fff;
+  line-height: 16px;
+}
+.design-settingpanel .design-field .design-conditionwarn .icon-error {
+  color: #ff8415;
+  vertical-align: baseline;
+}
+.design-settingpanel .design-field.design-setting-required,
+.design-settingpanel .design-field.design-setting-important,
+.design-settingpanel .design-field.design-setting-push,
+.design-settingpanel .design-field.design-setting-print,
+.design-settingpanel .design-field.design-setting-stat,
+.design-settingpanel .design-field.design-setting-display,
+.design-settingpanel .design-field.design-setting-cnformat,
+.design-settingpanel .design-field.design-setting-placeholder,
+.design-settingpanel .design-field.design-setting-options {
+    color: #ddd;
+}
+.design-settingpanel .design-field.design-setting-required input[type="checkbox"],
+.design-settingpanel .design-field.design-setting-important input[type="checkbox"],
+.design-settingpanel .design-field.design-setting-push input[type="checkbox"],
+.design-settingpanel .design-field.design-setting-print input[type="checkbox"],
+.design-settingpanel .design-field.design-setting-stat input[type="checkbox"],
+.design-settingpanel .design-field.design-setting-display input[type="checkbox"],
+.design-settingpanel .design-field.design-setting-placeholder input[type="checkbox"],
+.design-settingpanel .design-field.design-setting-cnformat input[type="checkbox"] {
+    margin-right: 5px;
+    margin-left: 2px;
+    vertical-align: middle;
+}
+.design-settingpanel .design-field.design-setting-dateformat {
+  color: #fff;
+}
+.design-settingpanel .design-field.design-setting-dateformat input[type="radio"] {
+  margin-right: 5px;
+  margin-left: 2px;
+  vertical-align: middle;
+}
+.design-settingpanel .design-field.design-setting-daterangelabel .fieldblock:not(:last-child) {
+  margin-bottom: 30px;
+}
+.design-settingpanel .design-field.design-setting-options input[type="text"] {
+  width: 200px;
+}
+.design-settingpanel .design-field.design-setting-options .action {
+  margin-left: 5px;
+  display: inline-block;
+  opacity: 0.6;
+  text-align: center;
+}
+.design-settingpanel .design-field.design-setting-options .action .icon {
+  background: #000;
+  border-radius: 50%;
+  color: #fff;
+  padding: 3px 2px 3px 3px;
+  font-size: 12px;
+}
+.design-settingpanel .design-field.design-setting-options .action:hover {
+  opacity: 0.9;
+}
+.design-settingpanel .design-field.design-setting-options .limitadd .action-add,
+.design-settingpanel .design-field.design-setting-options .limitdel .action-del {
+  opacity: 0.2;
+  pointer-events: none;
+}
+.design-settingpanel .design-field.design-setting-content textarea {
+  min-height: 7.5em;
+}
+.design-settingpanel .children-list {
+    padding-left: 30px;
+}
+.design-settingpanel .children-list .design-setting-option input[type="text"] {
+    width: 125px;
+}
+.compute-widgets {
+    width: 95%;
+    margin-bottom: 10px;
+    font-size: 12px;
+}
+.compute-widgets th,
+.compute-widgets td {
+    border: 1px solid #666;
+    padding: 5px;
+}
+
+
+.design-form {
+    overflow: hidden;
+}
+.design-field {
+    display: block;
+    margin: 5px 0 30px;
+}
+.design-field.design-setting-required {
+    margin-bottom: 5px;
+}
+.design-field .fieldname {
+    display: block;
+    font-weight: bold;
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 12px;
+    padding-left: 2px;
+}
+.design-field .fieldname span {
+    font-size: 12px;
+}
+.design-field .fieldinfo {
+    color: #ccc;
+    font-size: 12px !important;
+    margin-left: 8px;
+    font-weight: normal;
+    opacity: 0.9;
+}
+.design-field .fieldinfo.error-empty,
+.design-field .fieldinfo.error-duplicate,
+.design-field .fieldinfo.error-toolong {
+    color: #ff4500 !important;
+}
+.design-field .fieldinfo.error-warn {
+    color: #ff8c00 !important;
+}
+.design-field input[type="text"].error-empty,
+.design-field input[type="text"].error-duplicate,
+.design-field input[type="text"].error-toolong {
+    border-color: #ff4500 !important;
+}
+.design-field input[type="text"].error-warn {
+    border-color: #ff8c00 !important;
+}
+.design-field .fieldblock {
+    display: block;
+    margin: 5px 0;
+    line-height: normal;
+}
+.design-field .verticalmiddle {
+    vertical-align: middle;
+}
+
+.design-componentview-button {
+    color: #f7f9ff;
+    text-align: center;
+    padding: 5px;
+    background: #008cee;
+    vertical-align: middle;
+    width: 120px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 5px 15px;
+}
+
+
+.design-component-rteditor .design-componentview-border {
+    padding: 15px;
+}
+.design-component-rteditor .design-componentview-border .design-componentview-label {
+    position: static;
+}

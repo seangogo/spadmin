@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cmcc.mobile.admin.dao.VwtDeptHisMapper" >
+	<resultMap id="BaseResultMap" type="cmcc.mobile.admin.entity.VwtDeptHis" >
+	    <id column="deptid" property="deptid" jdbcType="VARCHAR" />
+	    <result column="partname" property="partname" jdbcType="VARCHAR" />
+	    <result column="sort" property="sort" jdbcType="INTEGER" />
+	    <result column="parentdeptnum" property="parentdeptnum" jdbcType="VARCHAR" />
+	    <result column="act_time" property="actTime" jdbcType="TIMESTAMP" />
+	    <result column="customerid" property="customerid" jdbcType="VARCHAR" />
+	    <result column="delete_time" property="deleteTime" jdbcType="VARCHAR" />
+	  </resultMap>
+	  
+	  <!-- 获取删除数据 -->
+	  <select id="getDeleteByParams" parameterType="java.util.Map" resultMap="BaseResultMap">
+	  		select * from vwt_dept_his
+	  		where corpid = #{corpId,jdbcType=VARCHAR}
+	  		and delete_time >= to_date(#{date,jdbcType=VARCHAR},'yyyy-mm-dd hh24:mi:ss')
+	  </select>
+	  
+	  	   <!-- 查询删除部门中时间最大的记录 -->
+	   <select id="selectBycorpId" parameterType="java.lang.String" resultMap="BaseResultMap">
+	  		SELECT A.* FROM vwt_dept_his A,(SELECT max(delete_time) max_day FROM vwt_dept_his ) B WHERE A.delete_time = B.max_day 
+	  </select>
+	  </mapper>
